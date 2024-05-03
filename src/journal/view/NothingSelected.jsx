@@ -7,7 +7,7 @@ export const NothingSelected = () => {
     <Grid
     container
     spacing={0}
-    direction="column"
+    direction="row"
     alignItems="center"
     justifyContent="center"
     sx={{ minHeight: 'calc(100vh - 110px)', backgroundColor: 'primary.main', borderRadius: 3}}
