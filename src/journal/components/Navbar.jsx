@@ -10,7 +10,7 @@ export const Navbar = ({ drawerWidth = 240 }) => {
             // TODO Calculo 100 % que tenga disponible menos  el ancho que se recibe 
             //TODO ademas de que es el espacio para el sidebar 
             width: { sm: `calc(100% - ${ drawerWidth }px)`},
-            ml: { sm: `${ drawerWidth } px` }
+            ml: { sm: `${ drawerWidth }px` }
          }}
         >
 
