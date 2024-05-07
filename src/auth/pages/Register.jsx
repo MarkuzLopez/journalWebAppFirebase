@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { AuthLayout } from "../layout/AuthLayout";
-import { Button, Grid, Link, TextField, Typography } from "@mui/material";
+import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { useForm } from "../../shared/hooks/useForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { startCreatingUserWithEmailPasssword } from "../../store/auth/thunks";
 
 const formData = {
@@ -23,7 +23,10 @@ const formValidation = {
 
 export const Register = () => {
 
+  const { status, errorMessage } = useSelector( state =>  state.auth);   
   const dispatch = useDispatch();
+
+  const isAuthenticated = useMemo( ()=>  status === 'checking', [status] );
 
   const {
     email,
@@ -92,8 +95,13 @@ export const Register = () => {
         </Grid>
 
         <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained" fullWidth>
+
+          <Grid item xs={12} display={ !!errorMessage ? '' :  'none' } >
+            <Alert severity="error">{errorMessage}</Alert>
+          </Grid>
+
+          <Grid item xs={12}>            
+            <Button disabled={ isAuthenticated } type="submit" variant="contained" fullWidth>
               Crear Cuenta
             </Button>
           </Grid>
