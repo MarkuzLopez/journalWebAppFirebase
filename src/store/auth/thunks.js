@@ -10,16 +10,25 @@ export const checkingAuthentication = (email, password) => {
 export const startGoogleSignIn = () => { 
     return async (dispatch) => {         
         dispatch( checkingCredentials() )
-        const result = await  singInWithGoogle();        
+        const result = await  singInWithGoogle();
+
         if(!result.ok) return dispatch( logOut(result.errorMessage));
+        
+        dispatch(login(result))
     }
 }
 
 export const startCreatingUserWithEmailPasssword = ({ email, password, displayName }) => {
     return async (dispatch) => { 
         dispatch( checkingCredentials())
-        console.log(email, password, displayName, 'aqisdads');
-        const result =  await registerWithEmailAndPassword( email, password, displayName);
-     console.log({ result});
+        
+        const { ok, uid, photoURL, errorMessage } =  await registerWithEmailAndPassword( email, password, displayName);
+
+        if(!ok) { 
+            return dispatch(logOut({ errorMessage }));            
+        }
+
+        dispatch( login({ email, uid, photoURL, displayName }))
+     
     }
 }
