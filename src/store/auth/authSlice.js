@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        status: 'checking',
+        status: 'initial',
         email: null,
         displayName: null,
         photoURL: null,
@@ -25,7 +25,7 @@ export const authSlice = createSlice({
         state.displayName =  null,
         state.photoURL =  null,
         state.uid = null,
-        state.errorMessage =  payload.errorMessage
+        state.errorMessage =  payload?.errorMessage
      },
      checkingCredentials: (state, { payload }) => {
         state.status = 'checking'
