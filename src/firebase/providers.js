@@ -59,3 +59,25 @@ export const registerWithEmailAndPassword = async (email, password, displayName)
     }
   }
 }
+
+export const loginWithEmailPassword = async (email, password) => {   
+   try {
+    const result = await signInWithEmailAndPassword(firebaseAuth, email, password);
+    const { uid, displayName, photoURL } = result.user;
+    return {
+      ok: true,
+      uid, 
+      displayName,
+      email,
+      photoURL
+    }
+   } catch (error) {
+    console.log({error });
+    const errorMessage = error.message;
+    return { 
+      ok: false,
+      errorMessage
+    }
+   }
+}
+// firebase

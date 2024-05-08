@@ -1,7 +1,7 @@
-import { registerWithEmailAndPassword, singInWithGoogle } from "../../firebase/providers"
+import { loginWithEmailPassword, registerWithEmailAndPassword, singInWithGoogle } from "../../firebase/providers"
 import { checkingCredentials, login, logOut } from "./authSlice"
 
-export const checkingAuthentication = (email, password) => { 
+export const checkingAuthentication = () => { 
     return async (dispatch) => { 
         dispatch( checkingCredentials() )
     }
@@ -30,5 +30,19 @@ export const startCreatingUserWithEmailPasssword = ({ email, password, displayNa
 
         dispatch( login({ email, uid, photoURL, displayName }))
      
+    }
+}
+
+
+// accion asincrona cuando se logue con las credenciale
+
+export const starLoginWithEmailPassword = ({ email, password }) => {     
+    return async (dispatch) => { 
+        dispatch( checkingAuthentication ())
+        const  { ok, errorMessage , uid, photoURL, displayName }  = await loginWithEmailPassword(email, password);
+console.log(ok, errorMessage);
+        if(!ok) return dispatch(logOut({errorMessage} ));
+
+        dispatch( login({ email, uid, photoURL, displayName }))
     }
 }
