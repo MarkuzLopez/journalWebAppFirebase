@@ -11,7 +11,7 @@ import { startNewNote } from '../../store/journal';
 export const JournalPage = () => {
 
   const { isSaving, active } = useSelector(state => state.journal);
-  console.log(isSaving, 'asdsaving');
+  
   const dispatch = useDispatch();
 
   const addNote = () => { 
