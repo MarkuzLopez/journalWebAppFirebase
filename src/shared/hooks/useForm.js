@@ -9,6 +9,10 @@ export const useForm = (initialForm = {}, paramsFormValidations = {}) => {
       createValidator()
     }, [formState])
 
+    useEffect(() =>  {
+      setFormState(initialForm)
+    },[initialForm] )
+
 
     const isFormValid = useMemo(() => { 
 
@@ -33,7 +37,7 @@ export const useForm = (initialForm = {}, paramsFormValidations = {}) => {
     }
 
 /**
- * Meotodo para validar el formulario 
+ * Meotodo para validar el formulario  
  * con base a el objetop a evaluar. 
  * si cumple la validacion el mensaje sera nulo 
  * de lo contrario  mandara el mensaje de error establecido.
