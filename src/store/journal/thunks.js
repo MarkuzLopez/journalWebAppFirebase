@@ -1,12 +1,12 @@
 import { firebaseDB } from "../../firebase/config";
-import {  addDoc, collection } from "firebase/firestore";
-import { addNewEmptyNote, setActiveNote, setNotes, setSavingNote } from "./journalSlice";
+import {  addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { addNewEmptyNote, setActiveNote, setNotes, setSaving, setSavingNote, updatedNote } from "./journalSlice";
 import { loadNotes } from "../../helpers/loadNotes";
 
 export const startNewNote = () => { 
     
     return async (dispatch, getState ) => { 
-        console.log('starNeNot', getState);
+
         const { uid } = getState().auth;
         dispatch(setSavingNote() )
         
@@ -37,3 +37,26 @@ export const startLoadingNotes  = () => {
         dispatch( setNotes(notes) )
     }
 }
+
+export const startSaveNotes = () => { 
+    return async (dispatch, getState) => {
+
+        dispatch( setSaving() )
+
+        const { uid } =  getState().auth;
+        const { active:note  } =  getState().journal;     
+   
+      const noteToFirestore = {...note}
+      delete noteToFirestore.id
+      const noteRef = doc(firebaseDB, `${uid}/journal/notes/${note.id}`)
+      await updateDoc(noteRef, noteToFirestore);
+
+      dispatch( updatedNote(note))
+
+    }
+}
+
+
+// LOw9OVwZSZg0MvJjFdbyIzZNd8W2/journal/notes/5hBbFwWBeury71E2vr9y has
+// /LOw9OVwZSZg0MvJjFdbyIzZNd8W2/journal/notes/5hBbFwWBeury71E2vr9y
+// LOw9OVwZSZg0MvJjFdbyIzZNd8W2/jornal/notes/5hBbFwWBeury71E2vr9y has
