@@ -55,8 +55,3 @@ export const startSaveNotes = () => {
 
     }
 }
-
-
-// LOw9OVwZSZg0MvJjFdbyIzZNd8W2/journal/notes/5hBbFwWBeury71E2vr9y has
-// /LOw9OVwZSZg0MvJjFdbyIzZNd8W2/journal/notes/5hBbFwWBeury71E2vr9y
-// LOw9OVwZSZg0MvJjFdbyIzZNd8W2/jornal/notes/5hBbFwWBeury71E2vr9y has

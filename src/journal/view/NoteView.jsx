@@ -11,7 +11,7 @@ export const NoteView = () => {
 
   const dispatch =  useDispatch();
 
-  const  { active:note } = useSelector(state =>  state.journal); 
+  const  { active:note, messageSaved, isSaving } = useSelector(state =>  state.journal); 
 
   const { body, title, date, onInputChange, formState } =  useForm( note);
 
@@ -23,6 +23,13 @@ export const NoteView = () => {
   useEffect(() => { 
     dispatch( setActiveNote(formState))
   },[ formState ])
+
+  useEffect(() => {
+    if(messageSaved.length > 0) { 
+      alert(messageSaved)
+    }
+  }, [messageSaved])
+  
 
 
   const onSaveNote = () => { 
@@ -46,7 +53,7 @@ export const NoteView = () => {
       </Grid>
 
       <Grid item>
-        <Button color="primary" sx={{ padding: 2 }} onClick={onSaveNote} >
+        <Button color="primary" sx={{ padding: 2 }} onClick={onSaveNote} disabled={ isSaving } >
           <SaveOutlined
             sx={{
               fontSize: 30,
