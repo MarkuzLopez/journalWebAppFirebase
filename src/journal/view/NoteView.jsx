@@ -5,7 +5,7 @@ import { ImgGallery } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "../../shared/hooks/useForm";
 import { setActiveNote } from "../../store/journal/journalSlice";
-import { startSaveNotes } from "../../store/journal/thunks";
+import { startSaveNotes, startUploadingFiles } from "../../store/journal/thunks";
 
 export const NoteView = () => {
 
@@ -42,9 +42,8 @@ export const NoteView = () => {
   const onFileInputChange = ({ target }) => {
     
     if( target.files === 0 ) return;
-    
-    console.log('file change', target.files);
-    // dispatch( startUploading() )
+        
+    dispatch( startUploadingFiles(target.files) )
     //
 
   }
