@@ -43,7 +43,7 @@ export const NoteView = () => {
     
     if( target.files === 0 ) return;
     
-    console.log('file change', target.files)
+    console.log('file change', target.files);
     // dispatch( startUploading() )
     //
 
