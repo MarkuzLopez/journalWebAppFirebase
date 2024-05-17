@@ -13,7 +13,6 @@ import { setActiveNote } from "../../store/journal/journalSlice";
 export const SideBarItem = ({note}) => {
 
     const dispatch = useDispatch();
-
     
     const { title = '', body, id, date, imageUrls } = note;
     const newTitle = useMemo(() => {

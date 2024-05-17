@@ -3,6 +3,7 @@ import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { starLogOut } from '../../store/auth/thunks'
+import { clearNotesLogOut } from '../../store/journal/journalSlice'
 
 export const Navbar = ({ drawerWidth = 240 }) => {
 
@@ -10,6 +11,7 @@ export const Navbar = ({ drawerWidth = 240 }) => {
 
     const logOut = () => {        
         dispatch( starLogOut() )
+        dispatch( clearNotesLogOut() )
     }
 
   return (
