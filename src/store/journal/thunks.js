@@ -22,7 +22,7 @@ export const startNewNote = () => {
         } );        
 
         newNote.id = doc.id;
-         dispatch( addNewEmptyNote(newNote));
+        dispatch( addNewEmptyNote(newNote));
         dispatch( setActiveNote(newNote));
     }
 }

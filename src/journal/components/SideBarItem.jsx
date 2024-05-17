@@ -15,7 +15,7 @@ export const SideBarItem = ({note}) => {
     const dispatch = useDispatch();
 
     
-    const { title = '', body, id, date } = note;
+    const { title = '', body, id, date, imageUrls } = note;
     const newTitle = useMemo(() => {
         return (title.length > 17) ?
         title.substring(0, 17) + '...'
@@ -29,7 +29,7 @@ export const SideBarItem = ({note}) => {
             title,
             body,
             date,
-            imageUrls: []
+            imageUrls
         }) );
     }
     
