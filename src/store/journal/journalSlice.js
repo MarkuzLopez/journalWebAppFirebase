@@ -50,7 +50,14 @@ export const journalSlice = createSlice({
       state.notes = [];
       state.active = null;
     },
-    deleteNodeById: (state, action) => {},
+    deleteNoteById: (state, action) => {
+      console.log(action.payload);
+      console.log(state.notes, 'adsa');
+      // TODO realizar  quitar la nota activa y del arreglo , 
+      // quitar en firebase y del listado del sideba      
+      state.active = null;
+      state.notes = state.notes.filter( note => note.id  !== action.payload )
+    },
   },
 });
 
@@ -58,6 +65,7 @@ export const journalSlice = createSlice({
 export const {
   addNewEmptyNote,
   clearNotesLogOut,
+  deleteNoteById,
   setActiveNote,
   setNotes,
   setPhotosToActiveNote,
