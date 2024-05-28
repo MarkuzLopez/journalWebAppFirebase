@@ -14,6 +14,7 @@ const formData = { 
 export const Login = () => {
 
   const { status, errorMessage } = useSelector( state =>  state.auth );
+
   const dispatch = useDispatch();
 
   const { email, password, onInputChange } = useForm(formData)
@@ -22,7 +23,7 @@ export const Login = () => {
 
   const onSubmit = (event) => { 
     event.preventDefault();
-    dispatch( checkingAuthentication() )
+    // dispatch( checkingAuthentication() )
 
     dispatch( starLoginWithEmailPassword({email, password}) )
     // crear una accion aqui similar en checking 
@@ -34,10 +35,10 @@ export const Login = () => {
 
   return (
     <AuthLayout title="Login!! ">
-      <form onSubmit={ onSubmit } >
+      <form onSubmit={ onSubmit } aria-label="submit-form" >
         <Grid item xs={12} sx={{ mt: 2 }}>
           <TextField
-            label="Email"
+            label="Correo"
             type="email"
             name="email"
             value={email}
@@ -54,6 +55,9 @@ export const Login = () => {
             placeholder="Contraseña"
             fullWidth
             name="password"
+            inputProps={{
+              'data-testid': 'password'
+            }}
             value={password}
             onChange={onInputChange}            
           />
@@ -72,7 +76,7 @@ export const Login = () => {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Button  disabled={ isAuthenticated}  type="button" onClick={onGoogleSigIn} variant="contained" fullWidth>
+            <Button  disabled={ isAuthenticated}  type="button" onClick={onGoogleSigIn} variant="contained" aria-label="google-btn" fullWidth>
               <Google />
               <Typography sx={{ ml: 1 }}>Google </Typography>
             </Button>
